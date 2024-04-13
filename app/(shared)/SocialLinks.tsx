@@ -6,8 +6,6 @@ import { SiYoutube } from "react-icons/si";
 import { SiLinkedin } from "react-icons/si";
 import { SiGithub } from "react-icons/si";
 
-
-
 type Props = {
     isDark? : boolean
 }

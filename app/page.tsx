@@ -1,4 +1,10 @@
 import Trending from "./(home)/Trending"
+import Engineering from "./(home)/Engineering"
+import Pm from "./(home)/Pm"
+import Others from "./(home)/Others";
+import Subscribe from "./(shared)/Subscribe";
+import Sidebar from "./(shared)/Sidebar";
+
 
 export default function Home() {
   return (
@@ -6,15 +12,15 @@ export default function Home() {
       <Trending />
       <div className="md:flex gap-10 mb-5">
         <div className="basis-3/4">
-          {/* <Engineering />
-          <Project />
-          <Others /> */}
+          <Engineering />
+          <Pm />
+          <Others />
           <div className="hidden md:block">
-            {/* <Subscribe /> */}
+            <Subscribe />
           </div>
         </div>
         <div className="basis-1/4">
-          {/* <Sidebar /> */}
+          <Sidebar />
         </div>
       </div>
     </main>
