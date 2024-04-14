@@ -1,12 +1,16 @@
 import React from 'react'
 import Link from 'next/link';
+import { Post } from '@prisma/client';
 
-type Props = {}
+type Props = {
+  trendingPosts: Array<Post>  
+}
 type TrendingCardProps = {
     className?:string;
+    post: Post
 }
 
-const TrendingCard = ({className} : TrendingCardProps) => {
+const TrendingCard = ({className, post} : TrendingCardProps) => {
     return (
         <Link 
         className={`${className} sm:mt-0 sm:h-auto relative mt-7 block w-full h-96 hover:opacity-70`}
@@ -22,7 +26,7 @@ const TrendingCard = ({className} : TrendingCardProps) => {
     )
 }
 
-const Trending = (props: Props) => {
+const Trending = ({trendingPosts}: Props) => {
   return (
     <section className='pt-3 pb-10'>
         <div className='flex items-center gap-3'>
@@ -47,10 +51,10 @@ const Trending = (props: Props) => {
 
         {/* grid way */}
         <div className='sm:grid gap-5 grid-cols-4 grid-rows-2 sm:h-[600px] my-3'> 
-            <TrendingCard className='col-span-2 row-span-2 bg-wh-500'></TrendingCard>
-            <TrendingCard className='col-span-2 row-span-1 bg-wh-500'></TrendingCard>
-            <TrendingCard className='col-span-1 row-span-1 bg-wh-500'></TrendingCard>
-            <TrendingCard className='col-span-1 row-span-1 bg-wh-500'></TrendingCard>
+            <TrendingCard className='col-span-2 row-span-2 bg-wh-500' post={trendingPosts[0]}></TrendingCard>
+            <TrendingCard className='col-span-2 row-span-1 bg-wh-500' post={trendingPosts[1]}></TrendingCard>
+            <TrendingCard className='col-span-1 row-span-1 bg-wh-500' post={trendingPosts[2]}></TrendingCard>
+            <TrendingCard className='col-span-1 row-span-1 bg-wh-500' post={trendingPosts[3]}></TrendingCard>
         </div>
     </section>
   )
