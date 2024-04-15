@@ -46,9 +46,9 @@ export default async function Home() {
       <Trending trendingPosts={trendingPosts} />
       <div className="md:flex gap-10 mb-5">
         <div className="basis-3/4">
-          <Engineering />
-          <Pm />
-          <Others />
+          <Engineering engineeringPosts={engineeringPosts} />
+          <Pm pmPosts={pmPosts} />
+          <Others othersPosts={othersPosts}/>
           <div className="hidden md:block">
             <Subscribe />
           </div>

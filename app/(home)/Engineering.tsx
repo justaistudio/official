@@ -1,9 +1,12 @@
 import React from 'react'
 import Card from '../(shared)/Card'
+import { Post } from '@prisma/client'
 
-type Props = {}
+type Props = {
+  engineeringPosts:Array<Post>
+}
 
-function Engineering({}: Props) {
+const Engineering = ({engineeringPosts}: Props) => {
   return (
     <section>
         <hr className='border-1'></hr>
@@ -17,10 +20,10 @@ function Engineering({}: Props) {
 
         {/* body */}
         <div className='sm:grid gap-x-8 gap-y-8 grid-cols-2 grid-rows-3 my-5'> 
-            <Card className='col-span-1 row-span-3 bg-wh-500' imageHeight='h-96' isLongForm></Card>
-            <Card className='col-span-1 row-span-1 bg-wh-500 mt-10 sm:mt-0 flex justify-between' imageHeight='h-48' isSmallCard></Card>
-            <Card className='col-span-1 row-span-1 bg-wh-500 mt-10 sm:mt-0 flex justify-between' imageHeight='h-48' isSmallCard></Card>
-            <Card className='col-span-1 row-span-1 bg-wh-500 mt-10 sm:mt-0 flex justify-between' imageHeight='h-48' isSmallCard></Card>
+            <Card className='col-span-1 row-span-3 bg-wh-500' imageHeight='h-96' isLongForm post={engineeringPosts[0]}></Card>
+            <Card className='col-span-1 row-span-1 bg-wh-500 mt-10 sm:mt-0 flex justify-between' imageHeight='h-48' isSmallCard post={engineeringPosts[1]}></Card>
+            <Card className='col-span-1 row-span-1 bg-wh-500 mt-10 sm:mt-0 flex justify-between' imageHeight='h-48' isSmallCard post={engineeringPosts[2]}></Card>
+            <Card className='col-span-1 row-span-1 bg-wh-500 mt-10 sm:mt-0 flex justify-between' imageHeight='h-48' isSmallCard post={engineeringPosts[3]}></Card>
             <div className='col-span-1 row-span-1 bg-wh-500'></div>
         </div>
     </section>
