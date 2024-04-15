@@ -28,9 +28,9 @@ export default async function Home() {
       if (i < 4) {
         trendingPosts.push(post)
       }
-      if (post?.category === 'engineering') {
+      if (post?.category === 'Engineering') {
         engineeringPosts.push(post)
-      } else if (post?.category === 'pm') {
+      } else if (post?.category === 'Pm') {
         pmPosts.push(post)
     } else {
       othersPosts.push(post)
