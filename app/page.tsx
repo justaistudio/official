@@ -7,11 +7,25 @@ import Sidebar from "./(shared)/Sidebar";
 import { prisma } from "./api/client";
 import { Post } from "@prisma/client";
 
+
 // grab posts and pre-rendering components in the backend
 const getPosts = async () => {
   const posts: Array<Post> = await prisma.post.findMany()
-  return posts
+  // transfer image from string to static import, make it an image module
+  const formattedPosts = await Promise.all(
+    posts.map(async (post: Post) => {
+      const imageModule = require(`../public${post.image}`)
+      console.log(imageModule)
+      return {
+        ...post,
+        image: imageModule.default
+      }
+    })
+  )
+  return formattedPosts
 }
+  
+
 
 export default async function Home() {
   const posts = await getPosts()
@@ -48,7 +62,7 @@ export default async function Home() {
         <div className="basis-3/4">
           <Engineering engineeringPosts={engineeringPosts} />
           <Pm pmPosts={pmPosts} />
-          <Others othersPosts={othersPosts}/>
+          {/* <Others othersPosts={othersPosts}/> */}
           <div className="hidden md:block">
             <Subscribe />
           </div>

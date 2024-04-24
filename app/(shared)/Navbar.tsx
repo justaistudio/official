@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import SocialLinks from './SocialLinks'
+import Ad1 from "public/assets/ad-1.jpg"
 
 type Props = {}
 
@@ -29,7 +30,13 @@ const Navbar = (props: Props) => {
             </p>
         </div>
         <div className='basis-full relative w-auto h-32 bg-wh-500'>
-            Image right here
+        <Image
+            fill
+            style = {{objectFit: 'cover'}}
+            alt=''
+            src={Ad1}
+            placeholder='blur'
+        />
         </div>
     </div>
     <hr className='border-1 mx-10' />

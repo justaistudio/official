@@ -1,4 +1,5 @@
 import { Post } from '@prisma/client';
+import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react'
 
@@ -22,7 +23,13 @@ const Card = ({className, imageHeight, isSmallCard = false, isLongForm = false, 
       href={`${process.env.NEXT_PUBLIC_URL}/post/${post?.id}`}
       >
         <div className={`relative w-auto mb-3 ${imageHeight}`}>
-          image
+        <Image
+            fill
+            style = {{objectFit: 'cover'}}
+            alt=''
+            src={image}
+            // placeholder='blur'
+        />
         </div>
       </Link>
         <div className='basis-full'>

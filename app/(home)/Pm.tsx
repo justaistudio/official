@@ -17,11 +17,11 @@ const Pm = ({pmPosts}: Props) => {
             <p className='font-bold text-2xl'>專案與產品管理工具</p>
         </div>
         <div className='sm:flex justify-between gap-8'>
-        <Card className='sm:mt-0 mt-5 bg-wh-500 basis-1/3' imageHeight='h-80' post={pmPosts[0]}></Card>
-        <Card className='sm:mt-0 mt-5 bg-wh-500 basis-1/3' imageHeight='h-80' post={pmPosts[1]}></Card>
-        <Card className='sm:mt-0 mt-5 bg-wh-500 basis-1/3' imageHeight='h-80' post={pmPosts[2]}></Card>
+        <Card className='sm:mt-0 mt-5 basis-1/3' imageHeight='h-80' post={pmPosts[0]}></Card>
+        <Card className='sm:mt-0 mt-5 basis-1/3' imageHeight='h-80' post={pmPosts[1]}></Card>
+        <Card className='sm:mt-0 mt-5 basis-1/3' imageHeight='h-80' post={pmPosts[2]}></Card>
         </div>
-        <Card className='sm:flex justify-between items-center bg-wh-500 mt-7 mb-5 gap-3' imageHeight='h-80' post={pmPosts[3]}></Card>
+        <Card className='sm:flex justify-between items-center mt-7 mb-5 gap-3' imageHeight='h-80' post={pmPosts[3]}></Card>
 
     </section>
   )
