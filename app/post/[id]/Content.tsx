@@ -6,6 +6,11 @@ import Image from 'next/image';
 import React, { useState } from 'react'
 import { ImCancelCircle } from "react-icons/im";
 import { ImPencil } from "react-icons/im";
+import "@uiw/react-md-editor/markdown-editor.css";
+import MDEditor from '@uiw/react-md-editor/nohighlight';
+import TurndownService from 'turndown';
+
+const turndownService = new TurndownService();
 
 type Props = {
     post: FormattedPost
@@ -13,12 +18,25 @@ type Props = {
 
 const Content = ({post}: Props) => {
     const [isEditable, setIsEditable] = useState<Boolean>(false)
-    const [title, setTitle] = useState<String>(post.title)
-    const [titleError, setTitleError] = useState<String>("")
-    const [content, setContent] = useState<String>(post.content)
-    const [contentError, setContentError] = useState<String>("")
+    const [title, setTitle] = useState<string>(post.title)
+    const [titleError, setTitleError] = useState<string>("")
+    const [content, setContent] = useState<string>(post.content)
+    const [contentError, setContentError] = useState<string>("")
+    const [value, setValue] = React.useState("");
 
-const handleSubmit = () => {}
+    const handleEdit = () => {
+        if (!isEditable) {
+            setValue(turndownService.turndown(post.content));
+        }
+        setIsEditable(!isEditable);
+    }
+
+    const handleSubmit = (e:any) => {
+        e.preventDefault();
+        setContent(value);
+        setTitle(title);
+        setIsEditable(false); 
+    }
 
   return (
     <div className='prose w-full max-w-full mb-10'>
@@ -29,17 +47,18 @@ const handleSubmit = () => {}
             <h4 className='bg-accent-orange py-2 px-5 text-wh-900 text-sm font-bold'>{post.category}</h4>
             <div className='mt-4'>
                 {isEditable? (<div className='flex justify-between gap-3'>
-                <button onClick={()=> console.log('cancel edit')}>
-                    <ImPencil className='h-6 w-6 text-accent-red' />
+                <button onClick={handleEdit}>
+                    <ImCancelCircle className='h-6 w-6 text-accent-red' />
                 </button>
             </div>
                 ) : (
-                <button onClick={()=> console.log('edit')}>
-                    <ImCancelCircle className='h-6 w-6 text-accent-red' />
+                <button onClick={handleEdit}>
+                    <ImPencil className='h-6 w-6 text-accent-red' />
                 </button>
                 )}
         </div>
     </div>
+
     <form onSubmit={handleSubmit}>
         {/* Header */}
         <>
@@ -48,9 +67,10 @@ const handleSubmit = () => {}
                 <textarea 
                 className='border-2 rounded-md bg-wh-50 p-3 w-full'
                 placeholder="Title"
-                onChange={(e)=> console.log("changeTitle", e.target.value)}
+                onChange={(e)=> setTitle(e.target.value)}
                 value={title}
-                ></textarea>
+                >
+                </textarea>
             </div>
         ):(
             <h3 className='font-bold text-3xl mt-3'>{title}</h3>
@@ -69,6 +89,23 @@ const handleSubmit = () => {}
             style={{objectFit:'cover'}}
             />
         </div>
+
+        <div className={isEditable? "container border-2 rounded-md bg-wh-300 p-3":"w-full max-w-full"}>
+            {isEditable && (
+            <div data-color-mode="light">
+            <MDEditor
+                height={800}
+                value={value}
+                onChange={setValue}
+                textareaProps={{
+                    placeholder: '...在這輸入文字'}}
+                style={{color: "black"}}
+            />
+            {/* <MDEditor.Markdown source={value} style={{ whiteSpace: 'pre-wrap' }} /> */}
+            </div>
+                )}
+        </div> 
+
         {/* submit button */}
         {isEditable && (
             <div className='flex justify-end'>
@@ -81,6 +118,12 @@ const handleSubmit = () => {}
             </div>
         )}
     </form>
+
+    {/* Content */}
+    {!isEditable && (
+    <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
+    )}
+
     <div className='hidden md:block mt-10 w-1/4'>
         <SocialLinks isDark/>
     </div>
