@@ -45,12 +45,13 @@
 
         const handleEdit = () => {
             if (!isEditable) {
-                // 进入编辑模式时，保存当前标题和内容 save temp title and content when editing
+                // save original title and content when it is not editable, so it can be redo once giving up
                 setTempTitle(title);
                 setTempContent(content);
+                // turn current content to markdown for editor
                 setValue(turndownService.turndown(post.content));
             } else {
-                // 如果当前是编辑模式，恢复原始标题和内容
+                // set title and content from temp
                 setTitle(tempTitle);
                 setContent(tempContent);
             }

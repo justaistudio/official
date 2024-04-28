@@ -19,7 +19,7 @@ const Navbar = (props: Props) => {
             <Link href='/'>About</Link>
         </div>
         <div>
-            <p>Sign In</p>
+            <Link href="/write">Write</Link>
         </div>
     </nav>
     <div className='flex justify-between gap-8 mt-5 mb-4 mx-10'>
