@@ -17,11 +17,11 @@ export async function GET(request: Request) {
 }
 
 
-export async function handler(req: Request) {
-    switch (req.method) {
-        case 'GET':
-            return await GET(req);
-        default:
-            return new NextResponse(null, { status: 405, headers: { 'Allow': 'GET' } });
-    }
-}
+// export async function handler(req: Request) {
+//     switch (req.method) {
+//         case 'GET':
+//             return await GET(req);
+//         default:
+//             return new NextResponse(null, { status: 405, headers: { 'Allow': 'GET' } });
+//     }
+// }
