@@ -10,6 +10,7 @@
     import MDEditor from '@uiw/react-md-editor/nohighlight';
     import TurndownService from 'turndown';
     import { marked } from "marked";
+import { RocketLaunchIcon } from '@heroicons/react/16/solid';
 
 
 
@@ -93,6 +94,30 @@
 
         }
 
+        const [role, setRole] = useState<string>("I am a helpful assistant.");
+
+        const postAiContent = async () => {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_URL}/api/openai`, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                title: title,
+                role: role,
+              }),
+            });
+            
+        if (response.ok) {
+            const data = await response.json();
+            // Clear current content if necessary
+            setValue(''); // Clear the editor
+            setTimeout(() => {
+                setValue(data.content); // Set new content from API
+            }, 0); // Timeout to ensure the editor clears before setting new text
+        } else {
+            const errorData = await response.text();
+            console.error("Failed to fetch AI content:", errorData)
+    }
+          };
 
     return (
         <div className='prose w-full max-w-full mb-10'>
@@ -136,6 +161,26 @@
                 <h6 className='text-wh-300 text-xs'>{formattedDate}</h6>
             </div>
             </>
+
+            {/* AI GENERATOR */}
+            {isEditable && (
+                <div className="border-2 rounded-md bg-wh-50 p-3 mb-3">
+                <h4 className="m-0 p-0">Generate AI Content</h4>
+                <p className="my-1 p-0 text-xs">What type of writer do you want?</p>
+                <div className="flex gap-5 justify-between">
+                    <input
+                    className="border-2 rounded-md bg-wh-50 px-3 py-1 w-full"
+                    placeholder="Role"
+                    onChange={(e) => setRole(e.target.value)}
+                    value={role}
+                    />
+                    <button type="button" onClick={postAiContent}>
+                    <RocketLaunchIcon className="h-8 w-8 text-accent-orange hover:text-wh-300" />
+                    </button>
+                </div>
+                </div>
+            )}
+
             {/* image */}
             <div className='relative w-auto mt-2 mb-16 h-96'>
                 <Image 
