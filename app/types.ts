@@ -8,5 +8,5 @@ export type FormattedPost = {
     author: string;
     image: string;
     snippet: string;
-    views: int
+    views: number
 }
