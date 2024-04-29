@@ -21,8 +21,7 @@ const Pm = ({pmPosts}: Props) => {
         <Card className='sm:mt-0 mt-5 basis-1/3' imageHeight='h-80' post={pmPosts[1]}></Card>
         <Card className='sm:mt-0 mt-5 basis-1/3' imageHeight='h-80' post={pmPosts[2]}></Card>
         </div>
-        <Card className='sm:flex justify-between items-center mt-7 mb-5 gap-3' imageHeight='h-80' post={pmPosts[3]}></Card>
-
+        <Card className='sm:flex justify-between items-start mt-7 mb-5 gap-3' imageHeight='h-80' post={pmPosts[3]}></Card>
     </section>
   )
 }

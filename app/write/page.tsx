@@ -21,7 +21,7 @@ const Write = () => {
             .replace(/(?:__|[*#])|\[(.*?)\]\(.*?\)/g, '$1') // Remove bold, italics, headers, and inline links
             .replace(/\n/g, ' '); // Replace new lines with spaces for continuous text
     
-        // Return the first 150 characters followed by an ellipsis
+        // Return the first 100 characters followed by an ellipsis
         return plainText.substring(0, 100) + '...';
     };
 
@@ -72,67 +72,67 @@ const Write = () => {
     };
 
     return (
-        <div className='container mx-auto px-4'>
-            <h1 className='text-xl font-bold my-5'>Write a New Post</h1>
-            <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
-                    <input
-                        type="text"
-                        id="title"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                    />
-                    {titleError && <p className="text-red-500 text-xs mt-1">{titleError}</p>}
-                </div>
-                <div>
-                    <label htmlFor="category" className="block text-sm font-medium text-gray-700">Category</label>
-                    <input
-                        type="text"
-                        id="category"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                    />
-                </div>
-                <div>
-                    <label htmlFor="author" className="block text-sm font-medium text-gray-700">Author</label>
-                    <input
-                        type="text"
-                        id="author"
-                        value={author}
-                        onChange={(e) => setAuthor(e.target.value)}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                    />
-                </div>
-                <div data-color-mode="light">
-                    <label htmlFor="content" className="block text-sm font-medium text-gray-700">Content</label>
-                    <MDEditor
-                        value={content}
-                        onChange={(e:any) => setContent(e)}
-                        height={400}
-                    />
-                    {contentError && <p className="text-red-500 text-xs mt-1">{contentError}</p>}
-                </div>
-                <div>
-                    <label htmlFor="image" className="block text-sm font-medium text-gray-700">Image URL</label>
-                    <input
-                        type="text"
-                        id="image"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
-                        className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                    />
-                </div>
-                <button
-                    type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                    Publish Post
-                </button>
-            </form>
-        </div>
+        <div className='container mx-auto px-4 py-8'>
+        <h1 className='text-2xl font-bold text-gray-800 mb-6'>Write a New Post</h1>
+        <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 shadow-sm rounded-lg">
+            <div>
+                <label htmlFor="title" className="block text-sm font-medium text-gray-700">Title</label>
+                <input
+                    type="text"
+                    id="title"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
+                    className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                />
+                {titleError && <p className="text-red-500 text-xs mt-1">{titleError}</p>}
+            </div>
+            <div>
+                <label htmlFor="category" className="block text-sm font-medium text-gray-700">Category</label>
+                <input
+                    type="text"
+                    id="category"
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                />
+            </div>
+            <div>
+                <label htmlFor="author" className="block text-sm font-medium text-gray-700">Author</label>
+                <input
+                    type="text"
+                    id="author"
+                    value={author}
+                    onChange={(e) => setAuthor(e.target.value)}
+                    className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                />
+            </div>
+            <div className="mt-4">
+                <label htmlFor="content" className="block text-sm font-medium text-gray-700">Content</label>
+                <MDEditor
+                    value={content}
+                    onChange={(e:any) => setContent(e)}
+                    height={400}
+                />
+                {contentError && <p className="text-red-500 text-xs mt-1">{contentError}</p>}
+            </div>
+            <div>
+                <label htmlFor="image" className="block text-sm font-medium text-gray-700">Image URL</label>
+                <input
+                    type="text"
+                    id="image"
+                    value={image}
+                    onChange={(e) => setImage(e.target.value)}
+                    className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+                />
+            </div>
+            <button
+                type="submit"
+                className="inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out"
+            >
+                Publish Post
+            </button>
+        </form>
+    </div>
     );
 };
 

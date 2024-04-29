@@ -8,19 +8,26 @@ type Props = {
     params: {id: string}
 }
 
-const getPost = async (id: string) => {
-    const post: PostType | null  = await prisma.post.findUnique({
-        where: {id}
-    })
+const getPost = async (id: string): Promise<FormattedPost | null> => {
+    await prisma.post.update({
+        where: { id },
+        data: { views: { increment: 1 } }
+    });
+
+    const post: PostType | null = await prisma.post.findUnique({
+        where: { id }
+    });
+
     if (!post) {
-        console.log("post not found")
-        return null
+        console.log("post not found");
+        return null;
     }
 
     const formattedPost = {
         ...post,
         createdAt: post?.createdAt?.toISOString(),
-        updatedAt: post?.updatedAt?.toISOString()
+        updatedAt: post?.updatedAt?.toISOString(),
+        views: post.views 
 }
     return formattedPost
 }

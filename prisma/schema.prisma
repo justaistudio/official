@@ -24,4 +24,5 @@ model Post {
   author String
   image String
   snippet String @db.Text
+  views Int @default(0)
 }
